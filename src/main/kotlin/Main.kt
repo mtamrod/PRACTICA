@@ -41,19 +41,85 @@ La sobrecarga de métodos facilita la legibilidad del código y proporciona flex
 método para realizar operaciones similares pero con diferentes conjuntos de datos.
 
 */
+class Cafetera (val ubicacion: String) {
+    var capacidad: Int = 1000
+    var cantidad: Int = 0
+
+    constructor(ubicacion: String, capacidad: Int) : this(ubicacion) {
+        this.capacidad = capacidad
+        this.cantidad = capacidad
+    }
+
+    constructor(ubicacion: String, capacidad: Int, cantidad: Int): this(ubicacion) {
+        if (this.cantidad > this.capacidad) {
+            this.cantidad = this.capacidad
+        } else {
+            this.cantidad = cantidad
+        }
+    }
+
+    fun llenar() {
+        this.cantidad = this.capacidad
+    }
+
+    fun servirTaza(Taza) {
+            this.cantidad -= (Taza.capacidad - Taza.cantidad)
+    }
+
+    fun vaciar() {
+        this.cantidad = 0
+    }
+
+    fun agregarCafe(anadido) {
+        this.cantidad += anadido
+    }
+
+    override fun toString(): String {
+        return "Cafetera(ubicación = ${this.ubicacion}, capacidad = ${capacidad} c.c., cantidad = ${cantidad} c.c.)"
+    }
+
+}
+
+class Taza (val color: String = "Blanco",val capacidad: Int = 50, var cantidad: Int = 0) {
+    init {
+        if (this.cantidad > this.capacidad) {
+            this.cantidad = this.capacidad
+        }
+    }
+
+    fun llenar(): Int {
+        this.cantidad = this. capacidad
+        return this.cantidad
+    }
+
+    override fun toString(): String {
+        return "Taza(color = ${this.color}, capacidad = ${capacidad} c.c., cantidad = ${cantidad} c.c.)"
+    }
+}
 
 fun main() {
 
+    var anadido: Int = 0
+
     //TODO: Crear 3 cafeteras en la Sala, Cocina y Oficina
 
+    val cafetera1 = Cafetera("Sala", 0, 1000)
+    val cafetera2 = Cafetera("Cocina", 750, 750)
+    val cafetera3 = Cafetera("Oficina", 200, 500)
 
     //TODO: Crear una lista de 20 tazas con capacidades aleatorias
-
    
     println("**********************************************")
+
     //TODO: Mostrar por pantalla el contenido de las 3 cafeteras y las tazas.
 
-    
+    println(cafetera1.toString())
+    println(cafetera2.toString())
+    println(cafetera3.toString())
+    println(taza1.toString())
+    println(taza2.toString())
+    println(taza3.toString())
+
     println("**********************************************")
     println("Llenar la cafetera1 de café...")
     println("Vaciar la cafetera2...")
@@ -62,19 +128,26 @@ fun main() {
 
     //TODO: Llenar la cafetera1 de café.
 
+    cafetera1.llenar()
 
     //TODO: Vaciar la cafetera2.
 
+    cafetera2.vaciar()
 
     //TODO: Agregar café a la cafetera2 a la mitad de su capacidad.
 
+    cafetera2.agregarCafe(25)
 
     //TODO: Agregar 400 c.c. de café a la cafereta3
 
+    cafetera3.agregarCafe(400)
 
     println("**********************************************")
     //TODO: Mostrar por pantalla el contenido de las 3 cafeteras
 
+    println(cafetera1.toString())
+    println(cafetera2.toString())
+    println(cafetera3.toString())
 
     println("**********************************************")
     println("Servir café en las tazas...")
@@ -82,8 +155,11 @@ fun main() {
     //TODO: Servir café en las tazas... siempre que haya café en la cafetera y en el orden cafetera1, cafetera2 y cafetera3.
 
 
+
     println("**********************************************")
     //TODO: Mostrar por pantalla el contenido de las 3 cafeteras y las tazas.
 
-
+    println(cafetera1.toString())
+    println(cafetera2.toString())
+    println(cafetera3.toString())
 }
